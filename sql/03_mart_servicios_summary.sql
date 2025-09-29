@@ -1,3 +1,4 @@
+-- sql/03_mart_servicios_summary.sql
 DROP VIEW IF EXISTS mart.servicios_summary;
 CREATE VIEW mart.servicios_summary AS
 WITH ventas_ref AS (
@@ -58,7 +59,6 @@ SELECT
   m.mecanico_ref AS mecanico,
   m.fecha_min    AS fecha_inicio,
   m.fecha_max    AS fecha_fin,
-  COALESCE(r.venta_refacciones,0) + COALESCE(mo.venta_mano_obra,0)  AS total_cobrado_cliente,
   COALESCE(r.venta_refacciones,0)                         AS venta_refacciones,
   COALESCE(r.costo_refacciones,0)                         AS costo_refacciones,
   COALESCE(r.venta_refacciones,0) - COALESCE(r.costo_refacciones,0) AS utilidad_refacciones,
@@ -82,5 +82,3 @@ LEFT JOIN agg_mo mo  ON mo.folio = m.folio
 LEFT JOIN ventas_sin_compra vsc ON vsc.folio = m.folio
 LEFT JOIN compras_sin_venta csv ON csv.folio = m.folio
 ORDER BY m.fecha_min, m.folio;
-
-

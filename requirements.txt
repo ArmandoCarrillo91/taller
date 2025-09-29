@@ -6,3 +6,4 @@ gspread==6.1.4
 google-auth==2.35.0
 gspread
 oauth2client
+psycopg[binary]
