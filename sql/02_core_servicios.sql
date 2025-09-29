@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS core.servicios;
-
+CREATE TABLE core.servicios AS
 with tbl_main as (
 SELECT
     gen_random_uuid() AS id,  -- UUID único por registro
