@@ -54,7 +54,7 @@ def fetch_core():
         COALESCE(piezas_ref_sin_compra,0)::text  AS piezas_ref_sin_compra,
         COALESCE(piezas_ref_sin_venta,0)::text   AS piezas_ref_sin_venta
       FROM mart.servicios_summary
-      ORDER BY fecha_inicio NULLS LAST, folio;
+      ;
     """
     with psycopg.connect(**DB) as conn:
         with conn.cursor() as cur:
